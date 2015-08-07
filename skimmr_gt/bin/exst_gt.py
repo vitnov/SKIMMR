@@ -52,13 +52,16 @@ if __name__ == "__main__":
   end = time.time()
   print '...finished in %s seconds' % (str(end-start),)
   print 'Generating the source statement file...'
+  # COMMENT the following 1 line for limited number of generated statements
+  st_lim = 0
   # attempting to estimate the limit for the number of statements
-  st_lim = 750000
-  try:
-    import psutil
-    st_lim = 3000000*(psutil.TOTAL_PHYMEM / float(8*(2**30)))
-  except ImportError:
-    st_lim = 750000
+  # UNCOMMENT the following 6 lines for limited number of generated statements
+  #st_lim = 750000
+  #try:
+  #  import psutil
+  #  st_lim = 3000000*(psutil.TOTAL_PHYMEM / float(8*(2**30)))
+  #except ImportError:
+  #  st_lim = 750000
   # generating up to st_lim statements from the co-occurrence info
   start = time.time()
   gen_src(path,max_stmt=st_lim)
