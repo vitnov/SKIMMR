@@ -807,7 +807,7 @@ def processor_pos(identifier,job,lock,args):
 ## HIGHER-LEVEL FUNCTIONS FOLLOW
 ###############################################################################
 
-def split_pars(path,wlimit=2000000):
+def split_pars(path,wlimit=0):
   # splitting the texts in the path into paragraphs; if there are more words 
   # than wlimit, the paragraph list gets truncated to a size <= wlimit
 
@@ -839,7 +839,7 @@ def split_pars(path,wlimit=2000000):
       f = open(par_fname,'w')
       f.write(pars[par_id])
       f.close()
-    if wsize > wlimit:
+    if wlimit and wsize > wlimit: # finish if there is a word limit
       break
 
 def postag_texts(path,procn=cpu_count()):
